@@ -112,14 +112,14 @@ export default {
       }, {
         coursescore: '3',
         date: '2016-05-02',
-        name: '王小虎',
+        name: '高数二',
         score: '96',
         sort: '公共基础课程',
         result: '4.0',
       }, {
         coursescore: '3',
         date: '2016-05-02',
-        name: '王小虎',
+        name: '大学英语一',
         score: '96',
         sort: '公共基础课程',
         result: '4.0',
