@@ -6,9 +6,9 @@
 
     </el-breadcrumb>
 
-    <el-card class="box-card">
+    <!-- <el-card class="box-card">
 
-    </el-card>
+    </el-card> -->
   </div>
 
 </template>
