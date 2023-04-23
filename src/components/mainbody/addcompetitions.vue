@@ -1,5 +1,11 @@
 <template>
   <div>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item>添加竞赛成果</el-breadcrumb-item>
+      <el-breadcrumb-item>添加竞赛</el-breadcrumb-item>
+
+    </el-breadcrumb>
     <el-card class="box-card">
       <div
         slot="header"
