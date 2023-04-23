@@ -105,7 +105,7 @@ export default {
       tableData: [{
         coursescore: '3',
         date: '2016-05-02',
-        name: '王小虎',
+        name: '高数一',
         score: '96',
         sort: '公共基础课程',
         result: '4.0',
