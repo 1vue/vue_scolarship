@@ -64,8 +64,8 @@ export default {
     return {
       // 这是登录表单的数据绑定对象
       loginform: {
-        username: '1256',
-        password: '2546',
+        username: '',
+        password: '',
       },
       // 这是表单的验证规则对象
       loginformrules: {

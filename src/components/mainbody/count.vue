@@ -8,13 +8,84 @@
 
     <el-card class="box-card">
 
+      <div id="tp">
+
+      </div>
+
     </el-card>
   </div>
 
 </template>
 
 <script>
+import * as echarts from 'echarts';
 export default {
+  data () {
+    return {
+      charts: "",
+      opinionData: ["0", "2", "1", "2", "2", "3", "1"],
+    }
+
+  },
+  methods: {
+    drawLine (id) {
+      this.charts = echarts.init(document.getElementById(id));
+      this.charts.setOption({
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          data: ["近几学期平均绩点分析"],
+        },
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true,
+        },
+
+        toolbox: {
+          feature: {
+            saveAsImage: {},
+          },
+        },
+        xAxis: {
+
+          type: "category",
+          boundaryGap: false,
+          data: ["1", "2", "3", "4", "5", "6", "7"],
+        },
+        yAxis: {
+          name: '绩点',
+          type: "category",
+          boundaryGap: false,
+          data: ["0", "1", "2", "3", "4"],
+          dateMin: 0,
+          dateMax: 4,
+          min: 'dateMin',
+          max: 'dateMax',
+          minInterval: 1
+
+        },
+
+        series: [
+          {
+            name: "近几学期平均绩点分析",
+            type: "line",
+            stack: "总量",
+            data: this.opinionData,
+          },
+        ],
+      });
+    },
+
+  },
+
+  mounted () {
+    this.$nextTick(function () {
+      this.drawLine("tp");
+    });
+  },
 
 }
 </script>
@@ -25,5 +96,13 @@ export default {
   justify-content: center;
   width: 100%;
   height: 490px;
+}
+
+#tp {
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 200px;
+  width: 550px;
+  /* background-color: #d5f39c; */
 }
 </style>
