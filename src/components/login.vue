@@ -10,11 +10,11 @@
         label-width="0px"
         size="mini"
       >
-        <el-form-item prop="username">
+        <el-form-item prop="number">
           <label> 账号</label>
           <el-input
-            placeholder="用户名/学号/工号"
-            v-model="loginform.username"
+            placeholder="账号/学号/工号"
+            v-model="loginform.number"
             prefix-icon="iconfont icon-yuangong"
           >
 
@@ -23,7 +23,7 @@
         <el-form-item prop="password">
           <label>密码</label>
           <el-input
-            placeholder=" 3-16 位的字母、数字组合"
+            placeholder=" 6-16 位的字母、数字组合"
             v-model="loginform.password"
             prefix-icon="iconfont icon-lock"
             type="password"
@@ -35,7 +35,7 @@
             type="primary"
             round
           >重置</el-button> -->
-          <a href="#">忘记密码?</a>
+          <!-- <a href="#">忘记密码?</a> -->
 
           <button @click="resetloginfrom">清空</button>
         </div>
@@ -59,24 +59,27 @@
 </template>
 
 <script>
+import qs from 'qs'
 export default {
   data () {
     return {
       // 这是登录表单的数据绑定对象
       loginform: {
-        username: '',
+        number: '',
         password: '',
+        flag: 1,
       },
       // 这是表单的验证规则对象
       loginformrules: {
         // 验证用户名
-        username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
+        number: [
+          { required: true, message: '请输入账号', trigger: 'blur' },
           { min: 3, max: 16, message: '长度在 3 到 16 个字符', trigger: 'blur' }
         ],
         // 验证密码
         password: [
-          { min: 3, max: 16, message: '长度在 3 到 16 个字符', trigger: 'blur' }
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur' }
         ],
       }
     }
@@ -86,19 +89,57 @@ export default {
       this.$refs.loginfromref.resetFields();
     },
     login () {
+      this.loginform.flag = 1;
+
       this.$refs.loginfromref.validate(async valid => {
         if (!valid)
           return;
         // 发起axios请求
-        // const result = await this.$http.post('posts', this.loginform);
-        // console.log(result);
-        // if (result.status != 201)
-        //   return this.$message.error("登录失败");
+        // const result = await this.$http.post('/login', qs.stringify(this.loginform));
+        let data = {
+          number: this.loginform.number,
+          password: this.loginform.password,
+          flag: this.loginform.flag,
+        }
+        let formdata = new FormData()
+        for (let key in data) {
+          formdata.append(key, data[key])
+        }
+        this.$http.post('/login', formdata).then(
+          (res) => {
+            if (res.data.code != 1)
+              return this.$message.error("登录失败,用户名或密码错误");
+            console.log(res);
+            this.$message.success("登录成功")
+            window.sessionStorage.setItem("token", res.data.data);
+            this.$router.push('/home')
 
-        this.$message.success("登录成功")
-        window.sessionStorage.setItem("token", "232")
+          }
+        )
 
-        this.$router.push('/home')
+
+
+
+        // console.log(result.data);
+
+
+
+
+
+        // 接口1
+        // if (res.data.code != 1)
+        //   return this.$message.error("登录失败,用户名或密码错误");
+
+        // this.$message.success("登录成功")
+        // window.sessionStorage.setItem("token", res.data.data);
+
+        // //         if (result.status != 200)
+        // //           return this.$message.error("登录失败");
+
+        // // this.$message.success("登录成功")
+        // // window.sessionStorage.setItem("token", "232")
+
+        // this.$router.push('/home')
 
       })
     },
@@ -138,7 +179,7 @@ export default {
   background: url(@/assets/login.jpg) no-repeat;
   background-size: cover;
   background-position: center;
-  height: 600px;
+  height: 800px;
 }
 .login-box {
   display: flex;

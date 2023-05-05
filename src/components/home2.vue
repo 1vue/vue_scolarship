@@ -5,7 +5,7 @@
     <el-header>
       <div> <span class="iconfont icon-copper-diamond-line
 "></span>
-        <span>管理系统</span>
+        <span>The Future Management-学生电子档案系统</span>
       </div>
       <el-button
         @click="logout"
@@ -37,13 +37,19 @@
             <template slot="title">
               <!-- 一级菜单的图标 -->
               <i class="el-icon-user-solid"></i>
-              <span>学生成绩预测</span>
+              <span>学生管理</span>
             </template>
             <!-- 二级菜单 -->
-            <el-menu-item index="scoredata"><template slot="title">
+            <el-menu-item index="StudentsData"><template slot="title">
                 <!-- 二级菜单的图标 -->
                 <i class="el-icon-document"></i>
-                <span>成绩信息</span>
+                <span>学生信息</span>
+              </template></el-menu-item>
+
+            <el-menu-item index="updateStudentListFile"><template slot="title">
+                <!-- 二级菜单的图标 -->
+                <i class="el-icon-plus"></i>
+                <span>学生信息上传</span>
               </template></el-menu-item>
 
           </el-submenu>
@@ -52,32 +58,26 @@
             <template slot="title">
               <!-- 一级菜单的图标 -->
               <i class="el-icon-upload"></i>
-              <span>相关文件上传</span>
+              <span>审核管理</span>
             </template>
 
             <el-menu-item index="competitionsfile"><template slot="title">
                 <!-- 二级菜单的图标 -->
                 <i class="el-icon-coordinate"></i>
-                <span>竞赛文件上传</span>
-              </template></el-menu-item>
-
-            <el-menu-item index="informfile"><template slot="title">
-                <!-- 二级菜单的图标 -->
-                <i class="el-icon-plus"></i>
-                <span>通知文件上传</span>
+                <span>证明材料审核</span>
               </template></el-menu-item>
 
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
               <!-- 一级菜单的图标 -->
-              <i class="el-icon-setting"></i>
-              <span>设置</span>
+              <i class="el-icon-s-data"></i>
+              <span>学生成绩信息</span>
             </template>
-            <el-menu-item index="infosettings"><template slot="title">
+            <el-menu-item index="ScoreQuery"><template slot="title">
                 <!-- 二级菜单的图标 -->
                 <i class="el-icon-key"></i>
-                <span>信息设置</span>
+                <span>学生成绩查询</span>
               </template></el-menu-item>
           </el-submenu>
         </el-menu>

@@ -7,8 +7,18 @@
       <el-breadcrumb-item>成绩查询</el-breadcrumb-item>
 
     </el-breadcrumb>
+
     <!-- 卡片视图区 -->
     <el-card class="box-card">
+
+      <div
+        slot="header"
+        class="clearfix"
+      >
+
+        <span>成绩查询</span>
+
+      </div>
 
       <el-row :gutter="26">
         <el-col :span="6">
@@ -27,65 +37,64 @@
           </el-select>
         </el-col>
 
-        <el-col :span="6">
-
-          <el-input
-            v-model="input"
-            placeholder="请输入课程名称"
-          ></el-input>
-
-        </el-col>
         <el-col
           :pull="min"
           :span="6"
         >
 
-          <el-button type="primary">查询</el-button>
+          <el-button
+            type="primary"
+            @click="queryScoreData"
+          >查询</el-button>
         </el-col>
       </el-row>
       <!-- 用户列表 -->
       <el-table
         border
-        :data="tableData"
+        :data="scoreData"
         stripe
         style="width: 100%"
       >
-        <el-table-column type="index">
-        </el-table-column>
+
+        <!-- <el-table-column
+          prop="id"
+          label="id"
+        >
+        </el-table-column> -->
         <el-table-column
-          prop="coursescore"
-          label="学分"
-          width="100"
+          prop="semester"
+          label="开课学期"
         >
         </el-table-column>
         <el-table-column
-          prop="date"
-          label="开课时间"
-          width="180"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="name"
+          prop="courseName"
           label="课程名称"
-          width="180"
         >
         </el-table-column>
         <el-table-column
           prop="score"
           label="成绩"
-          width="180"
         >
         </el-table-column>
-        <el-table-column
+        <!-- <el-table-column
           prop="sort"
           label="课程性质"
         >
+        </el-table-column> -->
+
+        <!-- <el-table-column label="状态">
+           获取该行的数据 
+          <template slot-scope="scope">
+            {{ scope.row }}
+          </template>
         </el-table-column>
+
         <el-table-column
           prop="result"
           label="绩点"
         >
-        </el-table-column>
+        </el-table-column> -->
+
       </el-table>
 
     </el-card>
@@ -97,124 +106,39 @@ import * as echarts from 'echarts';
 export default {
   data () {
     return {
-      charts: "",
-      opinionData: ["0", "2", "1", "2", "2", "3", "1"],
+      // charts: "",
+      // opinionData: ["0", "2", "1", "2", "2", "3", "1"],
       // 获取用户列表的参数对象
-      queryInfo: {
-        query: '',
-        pagenum: '',
-        pagesize: '',
-      },
-      tableData: [{
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '高数一',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      }, {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '高数二',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      }, {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '大学英语一',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      }, {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '体育一',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      },
-      {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '体育二',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      },
-      {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '王小虎',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      },
-      {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '王小虎',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      },
-      {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '王小虎',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      },
-      {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '王小虎',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      },
-      {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '王小虎',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      },
-      {
-        coursescore: '3',
-        date: '2016-05-02',
-        name: '王小虎',
-        score: '96',
-        sort: '公共基础课程',
-        result: '4.0',
-      },
+      // queryInfo: {
+      //   query: '',
+      //   pagenum: 1,
+      //   pagesize: 2,
+      // },
+      scoreData: [],
 
-
-
-
-      ],
-      userlist: [],
       options: [{
-        value: '选项1',
-        label: '2021-2022-1'
+        value: null,
+        label: '全部学期'
       }, {
-        value: '选项2',
-        label: '2021-2022-2'
+        value: 1,
+        label: '第一学期'
       }, {
-        value: '选项3',
-        label: '2022-2023-1'
+        value: 2,
+        label: '第二学期'
       }, {
-        value: '选项4',
-        label: '2022-2023-2'
+        value: 3,
+        label: '第三学期'
       }, {
-        value: '选项5',
-        label: '2023-2024-1'
+        value: 4,
+        label: '第四学期'
       }, {
-        value: '选项6',
-        label: '2023-2024-2'
-      }
+        value: 5,
+        label: '第五学期'
+      },
+      {
+        value: 6,
+        label: '第六学期'
+      },
       ],
       min: 1,
       value: '',
@@ -224,75 +148,43 @@ export default {
 
   },
   created () {
-    this.getuserlist()
+    this.queryScoreData()
   },
 
   methods: {
-    async getuserlist () {
-      const { data: res } = await this.$http.get('...', { params: this.queryInfo })
-      if (res.meta.status !== 200)
-        return this.$message.error('获取用户列表失败')
-      this.userlist = res.data.users
+
+
+    handleSizeChange (newsize) {
+      console.log(newsize);
+      this.queryInfo.pagesize = newsize;
     },
-    drawLine (id) {
-      this.charts = echarts.init(document.getElementById(id));
-      this.charts.setOption({
-        tooltip: {
-          trigger: "axis",
-        },
-        legend: {
-          data: ["近几学期平均绩点分析"],
-        },
-        grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "3%",
-          containLabel: true,
-        },
-
-        toolbox: {
-          feature: {
-            saveAsImage: {},
-          },
-        },
-        xAxis: {
-
-          type: "category",
-          boundaryGap: false,
-          data: ["1", "2", "3", "4", "5", "6", "7"],
-        },
-        yAxis: {
-          name: '绩点',
-          type: "category",
-          boundaryGap: false,
-          data: ["0", "1", "2", "3", "4"],
-          dateMin: 0,
-          dateMax: 4,
-          min: 'dateMin',
-          max: 'dateMax',
-          minInterval: 1
-
-        },
-
-        series: [
-          {
-            name: "近几学期平均绩点分析",
-            type: "line",
-            stack: "总量",
-            data: this.opinionData,
-          },
-        ],
-      });
+    handleCurrentChange (newpage) {
+      console.log(newpage);
+      this.queryInfo.pagenum = newpage;
     },
-
+    queryScoreData () {
+      let Score = new FormData();
+      console.log(this.value);
+      Score.append('semester', this.value);
+      this.$http({
+        url: '/student/query/score',
+        method: "get",
+        headers: {
+          token: window.sessionStorage.getItem('token'),
+          "Content-Type": "multipart/form-data",
+        },
+        params: {
+          semester: this.value
+        },
+      }).then((res) => {
+        console.log(res);
+        this.scoreData = res.data.data;
+        if (res.data.code === 1)
+          this.$message.success('查询成功，共查询到' + this.scoreData.length + '条数据')
+      })
+    }
 
   },
-  mounted () {
-    this.$nextTick(function () {
-      this.drawLine("tp");
-    });
-  },
-
 }
 </script>
 

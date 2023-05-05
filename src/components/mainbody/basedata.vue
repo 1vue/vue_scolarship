@@ -9,14 +9,20 @@
     </el-breadcrumb>
     <!-- 卡片视图区 -->
     <el-card class="box-card">
+      <div
+        slot="header"
+        class="clearfix"
+      >
 
+        <span>基本信息</span>
+
+      </div>
       <div class="data">
 
         <el-descriptions
           class="margin-top"
-          title="学生基本信息"
           :column="3"
-          :size="size"
+          size="medium"
           border
         >
 
@@ -25,7 +31,7 @@
               <i class="el-icon-user-solid"></i>
               姓名
             </template>
-            mike
+            test
           </el-descriptions-item>
           <el-descriptions-item>
             <template slot="label">
@@ -112,36 +118,15 @@ export default {
   data () {
     return {
       // 获取用户列表的参数对象
-      queryInfo: {
-        query: '',
-        pagenum: '',
-        pagesize: '',
-        dialogImageUrl: '',
-        dialogVisible: false,
-        disabled: false,
-      }
+
     }
 
   },
   created () {
-    this.getuserlist()
+
   },
 
   methods: {
-    async getuserlist () {
-      const { data: res } = await this.$http.get('...', { params: this.queryInfo })
-    },
-
-    handleRemove (file) {
-      console.log(file);
-    },
-    handlePictureCardPreview (file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
-    },
-    handleDownload (file) {
-      console.log(file);
-    }
 
 
   }
@@ -151,55 +136,56 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.text {
-  font-size: 14px;
-}
+// .text {
+//   font-size: 14px;
+// }
 
-.item {
-  margin-bottom: 18px;
-}
+// .item {
+//   margin-bottom: 18px;
+// }
 
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-}
-.clearfix:after {
-  clear: both;
-}
+// .clearfix:before,
+// .clearfix:after {
+//   display: table;
+//   content: "";
+// }
+// .clearfix:after {
+//   clear: both;
+// }
 
-.box-card {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 490px;
-}
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
-  text-align: center;
-}
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-}
-.margin-top {
-  background-color: #f9fafc;
-  height: 400px;
-  width: 800px;
-}
+// .box-card {
+//   display: flex;
+//   justify-content: center;
+//   width: 100%;
+//   height: 490px;
+// }
+// .avatar-uploader .el-upload {
+//   border: 1px dashed #d9d9d9;
+//   border-radius: 6px;
+//   cursor: pointer;
+//   position: relative;
+//   overflow: hidden;
+// }
+// .avatar-uploader .el-upload:hover {
+//   border-color: #409eff;
+// }
+// .avatar-uploader-icon {
+//   font-size: 28px;
+//   color: #8c939d;
+//   width: 178px;
+//   height: 178px;
+//   line-height: 178px;
+//   text-align: center;
+// }
+// .avatar {
+//   width: 178px;
+//   height: 178px;
+//   display: block;
+// }
+// .margin-top {
+//   margin-top: 100px;
+//   background-color: #f9fafc;
+//   height: 400px;
+//   width: 800px;
+// }
 </style>

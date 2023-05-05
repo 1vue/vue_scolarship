@@ -9,11 +9,13 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios
 
 // 配置接口根路径
-axios.defaults.baseURL = 'http://jsonplaceholder.typicode.com/'
+axios.defaults.baseURL = 'http://175.6.115.16:8081'
+
+
 
 // axios拦截器,有token才能获取数据
 // axios.interceptors.request.use(config => {
-//   config.headers.Authorization = window.sessionStorage.getItem('token')
+//   config.headers.Authorization = window.sessionStorage.getItem('token')  //将令牌给Authorization
 //   // 必须return config
 //   return config;
 // })

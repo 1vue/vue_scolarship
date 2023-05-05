@@ -8,8 +8,18 @@
 
     <el-card class="box-card">
 
-      <div id="tp">
+      <div
+        slot="header"
+        class="clearfix"
+      >
 
+        <span>绩点分析</span>
+
+      </div>
+      <div class="center">
+        <div id="tp">
+
+        </div>
       </div>
 
     </el-card>
@@ -91,11 +101,15 @@ export default {
 </script>
 
 <style scoped>
-.box-card {
+/* .box-card {
   display: flex;
   justify-content: center;
   width: 100%;
   height: 490px;
+} */
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 #tp {
@@ -103,6 +117,5 @@ export default {
   margin-top: 10px;
   height: 200px;
   width: 550px;
-  /* background-color: #d5f39c; */
 }
 </style>

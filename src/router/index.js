@@ -10,19 +10,21 @@ import welcome from '@/components/welcome.vue'
 import basedata from '@/components/mainbody/basedata.vue'
 import query from '@/components/mainbody/query.vue'
 import show from '@/components/mainbody/show.vue'
-
 import allcompetitions from '@/components/mainbody/allcompetitions.vue'
 import addcompetitions from '@/components/mainbody/addcompetitions.vue'
-
 import codesettings from '@/components/mainbody/codesettings.vue'
 import count from '@/components/mainbody/count.vue'
 
+import updataInformation from '@/components/mainbody/updataInformation.vue'
+
+
 import home2 from '@/components/home2.vue'
 import welcome2 from '@/components/welcome2.vue'
-import scoredata from '@/components/manage-mainbody/scoredata.vue'
 import competitionsfile from '@/components/manage-mainbody/competitionsfile.vue'
-import informfile from '@/components/manage-mainbody/informfile.vue'
-import infosettings from '@/components/manage-mainbody/infosettings.vue'
+import updateStudentListFile from '@/components/manage-mainbody/updateStudentListFile.vue'
+
+import StudentsData from '@/components/manage-mainbody/StudentsData.vue'
+import ScoreQuery from '@/components/manage-mainbody/ScoreQuery.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +48,8 @@ const routes = [
       { path: '/addcompetitions', component: addcompetitions },
       { path: '/codesettings', component: codesettings },
       { path: '/count', component: count },
+
+      { path: '/updataInformation', component: updataInformation },
     ]
 
   },
@@ -54,10 +58,11 @@ const routes = [
     redirect: '/welcome2',
     children: [
       { path: '/welcome2', component: welcome2 },
-      { path: '/scoredata', component: scoredata },
+
+      { path: '/StudentsData', component: StudentsData },
       { path: '/competitionsfile', component: competitionsfile },
-      { path: '/informfile', component: informfile },
-      { path: '/infosettings', component: infosettings },
+      { path: '/updateStudentListFile', component: updateStudentListFile },
+      { path: '/ScoreQuery', component: ScoreQuery },
     ]
   },
 ]

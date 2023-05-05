@@ -5,7 +5,7 @@
     <el-header>
       <div> <span class="iconfont icon-copper-diamond-line
 "></span>
-        <span>管理系统</span>
+        <span>The Future Management-学生电子档案系统</span>
       </div>
       <!-- <el-button
         @click="logout"
@@ -84,7 +84,7 @@
             <el-menu-item index="allcompetitions"><template slot="title">
                 <!-- 二级菜单的图标 -->
                 <i class="el-icon-coordinate"></i>
-                <span>学校认可的竞赛</span>
+                <span>相关竞赛信息</span>
               </template></el-menu-item>
 
             <el-menu-item index="addcompetitions"><template slot="title">
@@ -97,6 +97,18 @@
           <el-submenu index="3">
             <template slot="title">
               <!-- 一级菜单的图标 -->
+              <i class="el-icon-document"></i>
+              <span>上传信息管理</span>
+            </template>
+            <el-menu-item index="updataInformation"><template slot="title">
+                <!-- 二级菜单的图标 -->
+                <i class="el-icon-search"></i>
+                <span>已上传信息查询</span>
+              </template></el-menu-item>
+          </el-submenu>
+          <el-submenu index="4">
+            <template slot="title">
+              <!-- 一级菜单的图标 -->
               <i class="el-icon-setting"></i>
               <span>设置</span>
             </template>
@@ -106,6 +118,7 @@
                 <span>密码设置</span>
               </template></el-menu-item>
           </el-submenu>
+
         </el-menu>
 
       </el-aside>
